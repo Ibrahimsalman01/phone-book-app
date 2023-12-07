@@ -1,6 +1,5 @@
 require('dotenv').config({path: __dirname + '/.env'});
 const mongoose = require('mongoose');
-const { transformWithEsbuild } = require('vite');
 
 mongoose.set('strictQuery', false);
 
@@ -24,13 +23,6 @@ const personSchema = new mongoose.Schema({
     },
     number: {
         type: String,
-        minLength: 10,
-        validate: {
-            validator: function(v) {
-                return /\d{3}-\d{3}-\d{4}/.test(v);
-            },
-            message: props => `${props.value} is not a valid phone number!`
-        },
         required: true
     }
 })
